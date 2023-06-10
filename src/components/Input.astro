@@ -1,0 +1,17 @@
+---
+interface Props {
+    name: string;
+    label: string;
+    type?: astroHTML.JSX.InputHTMLAttributes['type'];
+    placeholder?: string;
+
+}
+const {name, label, type,placeholder} = Astro.props;
+
+---
+
+<div class="text-left">
+    <label class="block mb-1 text-sm font-medium text-gray-100">{label}</label>
+    <input type={type} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "  name={name} placeholder={placeholder}/>
+</div>
+

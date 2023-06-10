@@ -1,81 +1,127 @@
 ---
+import GetStartedButton from '../components/GetStartedButton.astro';
+import Input from '../components/Input.astro';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+
+const data = [
+	{
+		icon: '/cash.svg',
+		title: 'Debt Facilities',
+		description: '​We have institutional debt facilities that lend us 85-90% of the acquisition cost and 100% of the renovation cost.',
+		subtitle: '80-90% Acquisition cost coverage',
+	},
+	{
+		icon : '/house.svg',
+		title : "Equity Partners",
+		description : "We look for equity partners that will assist to cover the equity 10-15% of acquisition, closing cost, legal fees and carrying cost.",
+		subtitle : "10-15% Equity coverage",
+	},
+	{
+		icon: "/roi.svg",
+		title: "ROI",
+		description: "After selling the property, the debt is repaid to the institution, and our equity partners receive a 17.5% return on their investments.",
+		subtitle: "17.5% ROI",
+	}
+]
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
+<Layout title="Evergreen Estates">
+	<main class=" text-center text-white ">
+		<div class=" py-32 relative " >
+			<h1 class=" text-4xl  font-semibold md:text-6xl ">	Invest In Real Estate</h1>
+			<p class=" text-lg mt-5 md:text-xl">Get up to 20% return on your investment</p>
+			<GetStartedButton />
+		
+		
+
+			<p class="mt-6">
+
+				Need more info? <a class="text-sm  text-amber-400 font-semibold underline md:text-base" href="/contact">Contact Us</a>
+			</p>
+			<img class="w-full -z-10 absolute top-0 bottom-0 h-full  brightness-50 blur-[1px] object-cover   " src="/home-media.webp" alt="hero" />
+		</div>
+
+		
+		
+		
+		<ul class="flex flex-col gap-16  md:gap-10 text-2xl mx-auto w-fit py-16 md:py-24 md:flex-row ">
+			<li>
+				<span class="text-amber-400 font-semibold">
+					$20M+
+				</span>
+				 Worth of Real Estate
+			</li>
+			<li>
+				<span class="text-amber-400 font-semibold">
+					500+
+				</span>
+				 Partners Nationwide
+			</li>
+			<li>
+				<span  class="text-amber-400 font-semibold">
+					42+ 
+				</span>
+				States Nationwide
+				
+			</li>
 		</ul>
+
 	</main>
+
+	<section class="pt-10 pb-10 bg-white  text-center">
+		<h2 class="text-4xl font-semibold">PARTNERS & ROI</h2>
+		<div class="flex flex-col md:flex-row gap-10 mt-20 px-[10%]">
+			{
+				data.map((item) => (
+					
+					<article  class="flex-1 p-6 bg-stone-50 rounded-lg hover:bg-stone-800 hover:text-white transition duration-200 ease-in-out group">
+						<img class="w-20 h-20 mx-auto group-hover:invert" src={item.icon} alt="icon" />
+
+						<h3 class="text-2xl font-semibold mt-4">{item.title}</h3>
+						<p class="mt-4 text-ce">{item.description}</p>
+						<p class="mt-4 text-amber-400 font-semibold">{item.subtitle}</p>
+							
+						<div class="block md:hidden ">
+							<GetStartedButton />
+						</div>
+					</article>
+				))
+			}
+		</div>
+		<div class="md:block hidden ">
+			<GetStartedButton />
+		</div>
+		
+	</section>
+
+
+	<section class="pt-10 pb-10 text-center   text-white" id="get-started">
+		<h2 class="text-4xl font-semibold">
+			Get Started
+		</h2>
+
+		<p class="mt-6 text-lg text-amber-400">
+			Will contact you soon with more information
+		</p>
+
+
+		<form class="flex flex-col mt-10 gap-y-4 items-center  ">
+
+				<div class="w-60  flex flex-col gap-5">
+					<Input label="Full name"  name='name' type='text'/>
+		
+					<Input label="Phone"  name='phone' type='text'/>
+					<Input label="Email"  name='email' type='email'/>
+				</div>
+				
+				<button class="bg-amber-400 mt-4  text-stone-800 font-semibold py-2 px-32 rounded-full hover:bg-amber-500 transition duration-200 ease-in-out">
+					Submit
+				</button>
+		
+		</form>
+
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+
 </style>
